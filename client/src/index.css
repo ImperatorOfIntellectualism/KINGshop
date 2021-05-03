@@ -14,3 +14,12 @@ img{
     width:100px;
     height:64px;
 }
+.col .row{
+    margin-bottom: 0px;
+}
+.card .card-content{
+    padding-bottom: 0px;
+}
+.input-field.inline{
+    width: 95%;
+}

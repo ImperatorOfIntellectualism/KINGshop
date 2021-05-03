@@ -27,13 +27,13 @@ router.post('/register', validator.check('email', 'Некорректный Emai
         res.status(500).json({message: "Что-то пошло не так, ошибка: " + e})
     }
 })
-router.post('/login', [validator.check("email", "Некорректный Email").normalizeEmail().isEmail(), validator.check("password", "Некорректный пароль").exists()], async (req, res) => {
+router.post('/login', [validator.check("password", "Некорректный пароль").exists()], async (req, res) => {
     try {
         const errors = validator.validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({errors: errors.array(), message: "Некорректные данные при авторизации"})
         }
-        const {login, email, password} = req.body
+        const {login, password} = req.body
         const user = await User.findOne({ login: login})
         if(!user){
             return res.status(400).json({ message: "Пользователь не найден"})
