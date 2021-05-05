@@ -1,10 +1,10 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router} from 'react-router-dom'
-import 'materialize-css'
 import { useRoutes } from './routes';
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/auth.context';
-import { Navbar } from './components/navbar';
+import { Topbar } from './components/navbar';
 
 function App() {
   const {token, login, logout, userId, userName} = useAuth()
@@ -13,7 +13,7 @@ function App() {
   return (
   <AuthContext.Provider value={{token, login, logout, userId, isAuthenticated, userName}}>
   <Router>
-    <Navbar/>
+    <Topbar/>
       {routes}
   </Router>
   </AuthContext.Provider>);
