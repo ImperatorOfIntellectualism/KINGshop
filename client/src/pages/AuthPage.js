@@ -48,6 +48,7 @@ export const AuthPage = () => {
                   <button className="waves-effect waves-light btn-small" onClick={loginHandler} disabled={loading}>Войти</button>
                   <Link to="/register" className="waves-effect waves-light btn-small">Ещё не зарегистрировались?</Link>
                 </div>
+                <span id="error"></span>
               </div>
             </div>
           </div>
