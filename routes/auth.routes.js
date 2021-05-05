@@ -47,7 +47,7 @@ router.post('/login', [validator.check("password", "Некорректный п�
             config.get('jwtSecret'),
             {expiresIn: '1h'}
             )
-            res.json({ token, userId: user.id })
+            res.json({ token, userId: user.id, userName: user.login })
     } catch(e){
         res.status(500).json({message: "Что-то пошло не так, ошибка: " + e})
     }

@@ -7,16 +7,14 @@ import { AuthContext } from './context/auth.context';
 import { Navbar } from './components/navbar';
 
 function App() {
-  const {token, login, logout, userId} = useAuth()
+  const {token, login, logout, userId, userName} = useAuth()
   const isAuthenticated = !!token
   const routes = useRoutes(isAuthenticated)
   return (
-  <AuthContext.Provider value={{token, login, logout, userId, isAuthenticated}}>
+  <AuthContext.Provider value={{token, login, logout, userId, isAuthenticated, userName}}>
   <Router>
     <Navbar/>
-    <div className="container">
       {routes}
-    </div>
   </Router>
   </AuthContext.Provider>);
 }
