@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs")
 const config = require("config");
 const validator = require('express-validator')
 const User = require('../models/User.js')
+const Item = require('../models/Item.js')
 const jwt = require('jsonwebtoken')
 
 // /api/auth/register
@@ -50,6 +51,14 @@ router.post('/login', [validator.check("password", "Некорректный п�
             res.json({ token, userId: user.id, userName: user.login })
     } catch(e){
         res.status(500).json({message: "Что-то пошло не так, ошибка: " + e})
+    }
+})
+router.post('/getitems', async (req, res) => {
+    try {
+        const data = await Item.find()
+        res.json(data)
+    } catch (error) {
+        
     }
 })
 

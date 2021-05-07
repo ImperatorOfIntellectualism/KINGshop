@@ -16,10 +16,10 @@ export const Topbar = () => {
         event.preventDefault()
         auth.logout()
         history.push("/")
-    }//<a href="/"><img src={logo} alt="src"/></a>
+    }
     return (
       <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <Navbar.Brand href="/"><img src={logo} width="64px" alt="src"/></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -32,11 +32,11 @@ export const Topbar = () => {
           </NavDropdown>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
           <Button variant="outline-success">Search</Button>
         </Form>
           {auth.isAuthenticated && <Nav.Link href="#home">{auth.userName}</Nav.Link>}
-          <Nav.Link href="/create">Создать</Nav.Link>
+          <Nav.Link href="/create">Корзина</Nav.Link>
           {!auth.isAuthenticated && <Nav.Link href="/login">Войти</Nav.Link>}
           {auth.isAuthenticated && <Button onClick={logoutHandler} variant="link">Выйти</Button>}
       </Navbar.Collapse>
