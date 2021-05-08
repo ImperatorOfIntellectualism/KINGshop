@@ -1,3 +1,157 @@
 .form-inline{
     margin-right: auto;
 }
+.product-card-top__code {
+    color: #4e4e4e;
+    font-size: 14px;
+    margin-top: 25px;
+    align-self: flex-end;
+    max-width: max-content;
+}
+.product-card-top__buy{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #333;
+    box-sizing: border-box;
+    grid-area: buy;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-radius: 11px;
+    padding: 16px 12px;
+    min-height: 140px;
+}
+.product-buy.product-buy_one-line{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #333;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    min-height: 44px;
+}
+.product-buy__price-wrap.product-buy__price-wrap_interactive{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #333;
+    box-sizing: border-box;
+    background: linear-gradient(270deg, #f6f6f6 0%, rgba(255,255,255,0) 100%);
+    border-radius: 8px;
+    flex-grow: 1;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    min-height: 44px;
+    cursor: pointer;
+}
+.product-buy__price{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    color: #333;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 22px;
+}
+.product-buy__hint{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    line-height: 1.42857;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    right: 8px;
+    color: #d3d3d3;
+    font-size: 22px;
+    display: block;
+}
+.product-buy__sub{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: "PT Sans","Helvetica","Arial",sans-serif;
+    color: #333;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 14px;
+    font-size: 14px;
+    margin-top: 4px;
+}
+.button-ui.button-ui_white.button-ui_icon.wishlist-btn{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    font: inherit;
+    margin: 0;
+    text-transform: none;
+    -webkit-appearance: button;
+    font-family: inherit;
+    border-radius: 8px;
+    animation-name: button-ui-init;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    outline: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    color: #8c8c8c;
+    transition: padding-right .3s;
+    margin-left: 4px;
+    height: 44px;
+    line-height: 42px;
+    min-width: 44px !important;
+    font-weight: normal !important;
+    width: 44px !important;
+    font-size: 20px;
+    padding: 0;
+}
+.button-ui.buy-btn.button-ui_brand.button-ui_passive{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    font: inherit;
+    margin: 0;
+    text-transform: none;
+    -webkit-appearance: button;
+    font-family: inherit;
+    border-radius: 8px;
+    animation-name: button-ui-init;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    text-decoration: none;
+    outline: none;
+    transition: padding-right .3s;
+    margin-left: 4px;
+    height: 44px;
+    line-height: 42px;
+    padding: 0 10px;
+    width: auto;
+    font-weight: normal !important;
+    color: #fff;
+    background: linear-gradient(to top, #fc8507, #ffa218);
+    border: 1px solid transparent;
+    border-top-color: #fc8507;
+    border-bottom-color: #ffa218;
+    min-width: 160px !important;
+}

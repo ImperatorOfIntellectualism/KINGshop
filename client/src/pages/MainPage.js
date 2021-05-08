@@ -7,18 +7,9 @@ import { ItemPage } from './ItemPage';
 
 export const MainPage = () => {
     const {request} = useHttp();
-    const id = 1;
     let [chosen, setChosen] = useState(0);
-    const itemFinder = async () => {
-        try {
-          const data = await request('/api/auth/getitems', 'POST')
-        } catch (error) {
-          
-        }
-      }
     if (chosen == 0) return (
         <div>
-        <div><button onClick={itemFinder}>find</button></div>{/*Выдаёт данные из БД товаров*/}
         <form>
         <input type="text" id="itemId"></input>
         <input type="button" onClick={() => setChosen(chosen = parseInt(document.getElementById('itemId').value) )}></input>
