@@ -17,7 +17,9 @@ const schema = new Schema(
         unique: true,
         required: true
     },
-    cart: [{ type: Schema.Types.ObjectId, ref: "Item"}]
+    cart: {
+     type: Array
+    }
   },
   {
     timestamps: true,

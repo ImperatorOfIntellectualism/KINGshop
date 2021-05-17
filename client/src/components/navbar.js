@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import {NavLink, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
 import logo from "../images/logo.png"
 import Navbar from 'react-bootstrap/Navbar'
@@ -16,6 +16,10 @@ export const Topbar = () => {
         event.preventDefault()
         auth.logout()
         history.push("/")
+        window.location.replace("/");
+    }
+    const gotocart = () => {
+      window.location.replace("/cart")
     }
     return (
       <Navbar bg="light" expand="lg">
@@ -36,7 +40,7 @@ export const Topbar = () => {
           <Button variant="outline-success">Search</Button>
         </Form>
           {auth.isAuthenticated && <Nav.Link href="#home">{auth.userName}</Nav.Link>}
-          <Nav.Link href="/create">Корзина</Nav.Link>
+          <Button onClick={gotocart} variant="link">Корзина</Button>
           {!auth.isAuthenticated && <Nav.Link href="/login">Войти</Nav.Link>}
           {auth.isAuthenticated && <Button onClick={logoutHandler} variant="link">Выйти</Button>}
       </Navbar.Collapse>

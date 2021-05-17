@@ -3,6 +3,7 @@ import { ItemContext } from "../context/item.context";
 import { useHttp } from "../hooks/http.hook";
 
 export const ItemPage = () => {
+  const {request} = useHttp()
   const info = useContext(ItemContext);
   let [item, setItem] = useState(null);
   async function itemFinder() {
@@ -14,6 +15,11 @@ export const ItemPage = () => {
   useEffect(() => {
     itemFinder();
   }, []);
+  async function buy () {
+    await request("/api/auth/buy", 
+      "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, id: item[info.id-1].id}
+    )
+  }
   if (item != null) {
     return (
       <div className="container py-4 my-4 mx-auto d-flex flex-column">
@@ -34,7 +40,7 @@ export const ItemPage = () => {
                     <div className="product-buy__hint"></div>
                     <div className="product-buy__sub">от 975 ₽/ мес.</div>
                   </div>
-                  <button className="button-ui buy-btn button-ui_brand button-ui_passive">
+                  <button className="button-ui buy-btn button-ui_brand button-ui_passive" onClick={buy}>
                     Купить
                   </button>
                 </div>

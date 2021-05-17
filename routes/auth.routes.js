@@ -61,5 +61,27 @@ router.post('/getitems', async (req, res) => {
         
     }
 })
-
+router.post('/buy', async (req, res) => {
+        User
+    .findOneAndUpdate({
+      login: req.body.userName
+    },{
+      $addToSet: {cart: req.body.id}
+    })
+    .then((user) => console.log(user.login))
+    .catch((error) => {
+      console.log(error);
+    });
+});
+router.post('/getcart', async (req, res) => {
+    await User.findOne({login: req.body.userName}).then(async (user) => {
+        const items = []
+        for(i = 0; i < user.cart.length; i++){
+        await Item.find({_id: user.cart[i]}).then((cartitem) => {
+            items.push(cartitem)
+        })
+    }
+        res.json(items)
+    })
+})
 module.exports = router;
