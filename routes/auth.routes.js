@@ -61,6 +61,14 @@ router.post('/getitems', async (req, res) => {
         
     }
 })
+router.post('/getitem', async (req, res) => {
+    try {
+        const data = await Item.findOne({name: req.body.name})
+        res.json(data)
+    } catch (error) {
+        
+    }
+})
 router.post('/buy', async (req, res) => {
         User
     .findOneAndUpdate({
@@ -83,5 +91,20 @@ router.post('/getcart', async (req, res) => {
     }
         res.json(items)
     })
+})
+router.post('/handler', async (req, res) => {
+    Item
+    .find({ name: { $regex: req.body.name, $options: "i" } })
+    .limit(5)
+    .then((name) => {
+      let list = "<ul>";
+      for (i = 0; i < name.length; i++) {
+        list =
+          list +
+          `<li onclick="fill('${name[i].name}')"><a>${name[i].name}</a></li>`;
+      }
+      list = list + "</ul>";
+      res.json(list);
+    });
 })
 module.exports = router;

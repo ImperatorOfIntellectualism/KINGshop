@@ -7,17 +7,18 @@ export const ItemPage = () => {
   const info = useContext(ItemContext);
   let [item, setItem] = useState(null);
   async function itemFinder() {
-    let item = await fetch("/api/auth/getitems", {
-      method: "POST",
-    }).then((response) => response.json());
+    let item = await request("/api/auth/getitem", 
+      "POST",
+      {name: info.name}
+    )
     setItem(item);
   }
   useEffect(() => {
     itemFinder();
-  }, []);
+  }, [info]);
   async function buy () {
     await request("/api/auth/buy", 
-      "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, id: item[info.id-1].id}
+      "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, id: item.id}
     )
   }
   if (item != null) {
@@ -26,7 +27,7 @@ export const ItemPage = () => {
         <div className="header">
           <div className="row r1">
             <div className="col-md-9 abc">
-              <h1>{item[info.id - 1].name}</h1>
+              <h1>{item.name}</h1>
             </div>
           </div>
         </div>
@@ -36,7 +37,7 @@ export const ItemPage = () => {
               <div className="product-card-top__buy" data-avails-as-tile="">
                 <div className="product-buy product-buy_one-line">
                   <div className="product-buy__price-wrap product-buy__price-wrap_interactive">
-                    <div className="product-buy__price">{item[info.id-1].cost} ₽</div>
+                    <div className="product-buy__price">{item.cost} ₽</div>
                     <div className="product-buy__hint"></div>
                     <div className="product-buy__sub">от 975 ₽/ мес.</div>
                   </div>
@@ -73,7 +74,7 @@ export const ItemPage = () => {
             <div className="col-md-7">
               {" "}
               <img
-                src={require(`../images/${item[info.id-1].image}.png`).default}
+                src={require(`../images/${item.image}.png`).default}
                 alt=""
                 width="90%"
                 height="95%"
@@ -83,15 +84,15 @@ export const ItemPage = () => {
         </div>
         <div className="footer d-flex flex-column mt-5"></div>
         <div className="product-card-top__code">
-          Код товара: {item[info.id - 1].id}
+          Код товара: {item.id}
         </div>
       </div>
     );
   } else return <div></div>;
 };
-/*id: ({item[info.id-1].id}).
-                    name: ({item[info.id-1].name}).
-                    cost: ({item[info.id-1].cost})
-                    quantity: ({item[info.id-1].quantity})
-                    description: ({item[info.id-1].description})
-                    image: ({item[info.id-1].image})*/
+/*id: ({item.id}).
+                    name: ({item.name}).
+                    cost: ({item.cost})
+                    quantity: ({item.quantity})
+                    description: ({item.description})
+                    image: ({item.image})*/

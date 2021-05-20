@@ -156,5 +156,47 @@
     border-bottom-color: #ffa218;
     min-width: 160px !important;
 }
-
+/* Поиск */
+.search{
+    margin-left: auto;
+    margin-right: auto;
+}
+#display{
+    position: absolute;
+    background-color: wheat;
+}
+ul, li{
+    list-style: none;
+    margin: 0;
+    color: #323232;
+    font-size: 16px;
+    line-height: 36px;
+    border: 1px solid transparent;
+    padding: 0px 16px;
+    transition: all .3s;
+}
+ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    
+}
+li {
+    padding-inline-start: 45px;
+    padding-inline-end: 43px;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+li:hover {
+    cursor: pointer;
+    background-color: white;
+    transition: 0.3ms;
+}
+/* Item */
+.container.py-4.my-4.mx-auto.d-flex.flex-column{
+    margin-left: auto;
+    margin-right: auto;
+}
 /* Cart */
