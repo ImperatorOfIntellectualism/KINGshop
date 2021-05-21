@@ -30,10 +30,11 @@ export const CartPage = () => {
   async function getData(){
     let items = await request('/api/auth/getcart', "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName})
     setItems(items);
+    console.log(items)
   }
   useEffect( () => {
     getData();
-  }, []);
+  }, [items]);
 
 
     return (
@@ -56,7 +57,7 @@ export const CartPage = () => {
           <div className="row">{item[0].name}</div>
         </div>
         <Column/>
-        <div className="col">{item[0].cost}₽ <span className="close">✕</span></div>
+        <div className="col">{item[0].cost}₽ <Button onClick={async () => {await request('/api/auth/deleteitem', "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, item: item[0].id});}} className="close">✕</Button></div>
       </div>
     </div>
         ))}

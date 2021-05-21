@@ -107,4 +107,18 @@ router.post('/handler', async (req, res) => {
       res.json(list);
     });
 })
+router.post("/deleteitem", async (req, res) => {
+    console.log(req.body.userName)
+    console.log(typeof req.body.item)
+    User
+    .findOneAndUpdate({
+      login: req.body.userName
+    },{
+      $pull: {cart: req.body.item}
+    })
+    .then((user) => console.log(user.login))
+    .catch((error) => {
+      console.log(error);
+    });
+})
 module.exports = router;

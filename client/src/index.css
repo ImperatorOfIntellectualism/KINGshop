@@ -200,3 +200,6 @@ li:hover {
     margin-right: auto;
 }
 /* Cart */
+.close{
+    cursor: pointer;
+}
