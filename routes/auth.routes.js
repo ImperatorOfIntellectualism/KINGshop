@@ -6,6 +6,7 @@ const validator = require('express-validator')
 const User = require('../models/User.js')
 const Item = require('../models/Item.js')
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 
 // /api/auth/register
 router.post('/register', validator.check('email', 'Некорректный Email').isEmail(), validator.check("password", "Некорректный пароль").isLength({min: 6}), async (req, res) => {
@@ -120,5 +121,38 @@ router.post("/deleteitem", async (req, res) => {
     .catch((error) => {
       console.log(error);
     });
+})
+router.post('/sendmail', async (req, res) => {
+    const data = JSON.stringify(req.body.data) + " " + JSON.stringify(req.body.quantity) + " " + req.body.name
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: 'bachuganchikomania2@gmail.com', // generated ethereal user
+            pass: '15042001sd%SD'  // generated ethereal password
+        },
+        tls:{
+          rejectUnauthorized:false
+        }
+      });
+    
+      // setup email data with unicode symbols
+      let mailOptions = {
+          from: '"KINGshop" <bachuganchikomania2@gmail.com>', // sender address
+          to: 'bachuganchikomania2@gmail.com', // list of receivers
+          subject: 'KINGshop', // Subject line
+          text: data, // plain text body
+          //html: //data // ${data}
+      };
+    
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              return console.log(error);
+          }
+          console.log('Message sent: %s', info.messageId);   
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      });
 })
 module.exports = router;

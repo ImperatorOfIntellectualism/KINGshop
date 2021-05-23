@@ -56,7 +56,7 @@ export const CartPage = () => {
         <div className="col">
           <div className="row">{item[0].name}</div>
         </div>
-        <Column/>
+        <Column />
         <div className="col">{item[0].cost}₽ <Button onClick={async () => {await request('/api/auth/deleteitem', "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, item: item[0].id});}} className="close">✕</Button></div>
       </div>
     </div>
@@ -81,7 +81,13 @@ export const CartPage = () => {
       <div className="row" style={{borderTop: '1px solid rgba(0,0,0,.1)', padding: '2vh 0'}}>
         <div className="col">TOTAL PRICE</div>
         <div className="col text-right">€ 137.00</div>
-      </div> <button className="btn">CHECKOUT</button>
+      </div> <button onClick={async () => {
+      let arr = [];
+      for ( let i = 0; i < document.getElementsByClassName("border").length; i++){
+        arr.push(document.getElementsByClassName("border")[i].textContent)
+      }
+      await request("/api/auth/sendmail", "POST", {data: items, quantity: arr,  name: JSON.parse(localStorage.getItem("userData")).userName});
+      }} className="btn">CHECKOUT</button>
     </div>
   </div>
 </div>
