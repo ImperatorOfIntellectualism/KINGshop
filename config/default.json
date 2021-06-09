@@ -1,5 +1,0 @@
-{
-    "port": 3001,
-    "jwtSecret": "CHAD",
-    "MONGO_URL": "mongodb+srv://BachusPL:15042001sd@kingshop.k4ucc.mongodb.net/kingshop?retryWrites=true&w=majority"
-}
