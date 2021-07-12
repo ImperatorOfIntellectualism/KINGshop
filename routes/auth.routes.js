@@ -84,13 +84,18 @@ router.post('/buy', async (req, res) => {
 });
 router.post('/getcart', async (req, res) => {
     await User.findOne({login: req.body.userName}).then(async (user) => {
-        const items = []
+        let items = []
         for(i = 0; i < user.cart.length; i++){
         await Item.find({_id: user.cart[i]}).then((cartitem) => {
             items.push(cartitem)
         })
     }
         res.json(items)
+    })
+})
+router.post('/getcartid', async (req, res) => {
+    await User.findOne({login: req.body.userName}).then(async (user) => {
+        res.json(user.cart)
     })
 })
 router.post('/handler', async (req, res) => {

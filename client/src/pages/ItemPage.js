@@ -6,17 +6,31 @@ export const ItemPage = () => {
   const {request} = useHttp()
   const info = useContext(ItemContext);
   let [item, setItem] = useState(null);
-  async function itemFinder() {
-    let item = await request("/api/auth/getitem", 
+  let [show, setShow] = useState(true);
+  async function getCart() {
+    if (!!localStorage.getItem("userData")){
+      let item = await request("/api/auth/getitem", 
       "POST",
       {name: info.name}
     )
     setItem(item);
+      let cart = await request('/api/auth/getcartid', "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName})
+      cart = Object.values(cart)
+      const arr = []
+      for (let i = 0;i < cart.length;i++ ){
+        arr.push(cart[i])
+      }
+      if (arr.includes(item.id)){
+        setShow(false)
+    }
+    else setShow(true)
+  }
   }
   useEffect(() => {
-    itemFinder();
+    getCart();
   }, [info]);
   async function buy () {
+    setShow(false)
     await request("/api/auth/buy", 
       "POST", {userName: JSON.parse(localStorage.getItem("userData")).userName, id: item.id}
     )
@@ -41,7 +55,7 @@ export const ItemPage = () => {
                     <div className="product-buy__hint"></div>
                     <div className="product-buy__sub">от 975 ₽/ мес.</div>
                   </div>
-                  {!!document.getElementById("username") &&<button className="button-ui buy-btn button-ui_brand button-ui_passive" onClick={buy}>
+                  {!!document.getElementById("username") && show &&<button className="button-ui buy-btn button-ui_brand button-ui_passive" onClick={buy}>
                     Купить
                   </button>}
                 </div>
